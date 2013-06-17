@@ -226,21 +226,6 @@ public class Command {
      * Applies info to an {@link org.bukkit.command.PluginCommand} object.
      */
     public void initializePluginCommand(PluginCommand cmd) {
-        cmd.setExecutor(new CommandExecutor() {
-            public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-                if (command.getName().equalsIgnoreCase(getName())) {
-                    try {
-                        execute(new WrappedCommandSource(sender), args);
-                    } catch (CommandException e) {
-                        sender.sendMessage(ChatColor.RED + e.getMessage());
-                    } catch (Exception e) {
-                        sender.sendMessage(ChatColor.RED + "An unexpected error occurred, check the console for details.");
-                        e.printStackTrace();
-                    }
-                }
-                return true;
-            }
-        });
         cmd.setUsage(getUsage());
         cmd.setDescription(getHelp());
         cmd.setPermission(getPermission());
