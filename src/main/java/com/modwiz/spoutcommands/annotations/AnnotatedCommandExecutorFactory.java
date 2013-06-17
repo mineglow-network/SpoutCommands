@@ -71,8 +71,9 @@ public final class AnnotatedCommandExecutorFactory {
 
             PluginCommand pluginCommand = Bukkit.getPluginCommand(cmd.getName());
             if (pluginCommand != null) {
-                cmd.initializePluginCommand(pluginCommand);
-                System.out.println("Plugin command for " + cmd.getName() + " wasn't null!");
+                if (parent == null) {
+                    pluginCommand.setExecutor(exe);
+                }
             }
         }
 

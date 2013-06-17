@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Allows for method registration of commands.
  */
-public class AnnotatedCommandExecutor implements Executor {
+public class AnnotatedCommandExecutor implements Executor, CommandExecutor{
     private final Map<com.modwiz.spoutcommands.Command, Method> commandMap;
     private final Object instance;
     private final CommandManager cmdManager;
@@ -45,4 +45,10 @@ public class AnnotatedCommandExecutor implements Executor {
             }
         }
     }
+
+    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+        execute(new WrappedCommandSource(sender), cmdManager.getCommand(command.getName()), new CommandArguments(args));
+        return true;
+    }
+
 }
