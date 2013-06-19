@@ -28,9 +28,7 @@
 package com.modwiz.spoutcommands.annotations;
 
 import com.modwiz.spoutcommands.*;
-import com.modwiz.spoutcommands.Command;
 import org.bukkit.command.*;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -39,13 +37,11 @@ import java.util.Map;
 /**
  * Allows for method registration of commands.
  */
-public class AnnotatedCommandExecutor implements Executor, CommandExecutor{
+public class AnnotatedCommandExecutor implements Executor {
     private final Map<com.modwiz.spoutcommands.Command, Method> commandMap;
     private final Object instance;
-    private final CommandManager cmdManager;
 
-    public AnnotatedCommandExecutor(CommandManager cmdManager, Object instance, Map<com.modwiz.spoutcommands.Command, Method> commandMap) {
-        this.cmdManager = cmdManager;
+    public AnnotatedCommandExecutor(Object instance, Map<com.modwiz.spoutcommands.Command, Method> commandMap) {
         this.instance = instance;
         this.commandMap = commandMap;
     }
@@ -71,11 +67,6 @@ public class AnnotatedCommandExecutor implements Executor, CommandExecutor{
                 throw new CommandException(e.getMessage(), e.getCause());
             }
         }
-    }
-
-    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-        execute(new WrappedCommandSource(sender), cmdManager.getCommand(command.getName()), new CommandArguments(args));
-        return true;
     }
 
 }

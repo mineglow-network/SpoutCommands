@@ -30,14 +30,11 @@ package com.modwiz.spoutcommands;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -56,7 +53,6 @@ public class WrappedCommandSource implements CommandSource {
     }
 
     public void processCommand(String command, String... args) {
-        List<String> commandArgs = Arrays.asList(args);
         String commandLine = command;
         for (int i = 0; i <args.length; i++) {
             commandLine += " " + args[i];

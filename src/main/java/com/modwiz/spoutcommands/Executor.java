@@ -27,9 +27,6 @@
 
 package com.modwiz.spoutcommands;
 
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-
 /**
  * Represents something that handles Command execution.
  */

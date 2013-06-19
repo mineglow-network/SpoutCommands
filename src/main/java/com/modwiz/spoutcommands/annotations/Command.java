@@ -27,9 +27,6 @@
 
 package com.modwiz.spoutcommands.annotations;
 
-
-import sun.reflect.annotation.AnnotationType;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -31,10 +31,7 @@ import com.modwiz.spoutcommands.*;
 import com.modwiz.spoutcommands.Command;
 import com.modwiz.spoutcommands.annotations.AnnotatedCommandExecutor;
 import org.bukkit.Bukkit;
-import org.bukkit.Server;
 import org.bukkit.command.PluginCommand;
-
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -72,7 +69,6 @@ public final class AnnotatedCommandExecutorFactory {
             }
 
             // create the command
-            Server server = Bukkit.getServer();
             com.modwiz.spoutcommands.annotations.Command a = method.getAnnotation(com.modwiz.spoutcommands.annotations.Command.class);
             Command command;
             if (parent != null) { // parent specified? create child
@@ -92,7 +88,7 @@ public final class AnnotatedCommandExecutorFactory {
         }
 
         // set the executor of our commands
-        AnnotatedCommandExecutor exe = new AnnotatedCommandExecutor(cmdManager, instance, commandMap);
+        AnnotatedCommandExecutor exe = new AnnotatedCommandExecutor(instance, commandMap);
         for (Command cmd : commandMap.keySet()) {
             cmd.setExecutor(exe);
 

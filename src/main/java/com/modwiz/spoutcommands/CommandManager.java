@@ -28,11 +28,6 @@
 package com.modwiz.spoutcommands;
 
 import com.modwiz.spoutcommands.annotations.AnnotatedCommandExecutorFactory;
-import org.bukkit.Bukkit;
-import org.bukkit.Server;
-import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Collections;
 import java.util.HashSet;

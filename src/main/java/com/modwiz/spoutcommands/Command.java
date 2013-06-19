@@ -27,6 +27,7 @@
 
 package com.modwiz.spoutcommands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -261,7 +262,12 @@ public class Command {
 			public boolean onCommand(CommandSender sender,
 					org.bukkit.command.Command command, String label,
 					String[] args) {
-				execute(new WrappedCommandSource(sender), args);
+				try {
+					execute(new WrappedCommandSource(sender), args);
+				} catch (CommandException ce) {
+					sender.sendMessage(ChatColor.RED + ce.getMessage());
+				}
+				
 				return true;
 			}
 		});
