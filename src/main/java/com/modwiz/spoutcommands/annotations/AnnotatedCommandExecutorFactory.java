@@ -62,7 +62,7 @@ public final class AnnotatedCommandExecutorFactory {
      *
      * @param parent to register commands under.
      */
-    public AnnotatedCommandExecutor create(Object instance, Command parent) {
+    public void register(Object instance, Command parent) {
         Map<Command, Method> commandMap = new HashMap<Command, Method>();
         for (Method method : instance.getClass().getMethods()) {
             method.setAccessible(true);
@@ -100,12 +100,16 @@ public final class AnnotatedCommandExecutorFactory {
             if (pluginCommand != null) {
                 if (parent == null) {
                     cmd.initializePluginCommand(pluginCommand);
-                    pluginCommand.setExecutor(exe);
                 }
             }
         }
-
-        return exe;
+        
+        if (parent != null) {
+        	PluginCommand pluginCommand = Bukkit.getPluginCommand(parent.getName());
+            if (pluginCommand != null) {
+                parent.initializePluginCommand(pluginCommand);
+            }
+        }
     }
 
     private static boolean isValidMethod(Method method) {

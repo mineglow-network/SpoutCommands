@@ -27,7 +27,6 @@
 
 package com.modwiz.spoutcommands;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -257,5 +256,14 @@ public class Command {
         cmd.setDescription(getHelp());
         cmd.setPermission(getPermission());
         cmd.setAliases(getAliases());
+        cmd.setExecutor(new CommandExecutor() {
+
+			public boolean onCommand(CommandSender sender,
+					org.bukkit.command.Command command, String label,
+					String[] args) {
+				execute(new WrappedCommandSource(sender), args);
+				return true;
+			}
+		});
     }
 }
